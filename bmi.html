@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>BMI Calculator</title>
+  <style>body{font-family:Arial;padding:20px} input,button{margin:6px 0;padding:8px}</style>
+</head>
+<body>
+  <h2>BMI Calculator</h2>
+  <label>Weight (kg)</label>
+  <input id="weight" type="number" step="0.1" />
+  <label>Height (cm)</label>
+  <input id="height" type="number" step="0.1" />
+  <button id="calc">Calculate BMI</button>
+  <div id="result" style="margin-top:10px;font-weight:600"></div>
+
+  <script>
+    document.getElementById('calc').addEventListener('click', () => {
+      const w = parseFloat(document.getElementById('weight').value);
+      const hcm = parseFloat(document.getElementById('height').value);
+      const out = document.getElementById('result');
+      if (!w || !hcm) { out.textContent = 'Enter valid weight and height'; return; }
+      const h = hcm / 100;
+      const bmi = w / (h*h);
+      let cat = '';
+      if (bmi < 18.5) cat = 'Underweight';
+      else if (bmi < 25) cat = 'Normal';
+      else if (bmi < 30) cat = 'Overweight';
+      else cat = 'Obese';
+      out.textContent = `BMI: ${bmi.toFixed(2)} — ${cat}`;
+    });
+  </script>
+</body>
+</html>
